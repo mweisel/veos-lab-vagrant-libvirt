@@ -54,7 +54,7 @@ packer build -var 'version=4.23.0.1F' arista-veos-lab.json
 vagrant box add --provider libvirt --name arista-veos-4.23.0.1F ./builds/veos-lab-4.23.0.1F-libvirt.box
 ```
 
-7. Vagrant Up!
+8. Vagrant Up!
 
 [![asciicast](https://asciinema.org/a/283821.svg)](https://asciinema.org/a/283821?speed=4)
 
