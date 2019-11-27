@@ -1,0 +1,61 @@
+{
+  "variables": {
+    "version": "unknown",
+    "gui_disabled": "true",
+    "boot_time": "3m",
+    "boot_key_interval": "50ms"
+  },
+  "builders": [
+    {
+      "type": "qemu",
+      "accelerator": "kvm",
+      "cpus": "1",
+      "disk_interface": "ide",
+      "disk_cache": "unsafe",
+      "format": "qcow2",
+      "disk_image": "true",
+      "use_backing_file": "false",
+      "machine_type": "pc",
+      "memory": "2048",
+      "net_device": "virtio-net",
+      "iso_url": "/var/lib/libvirt/images/vEOS.qcow2",
+      "iso_checksum": "",
+      "iso_checksum_type": "none",
+      "boot_key_interval": "{{user `boot_key_interval`}}",
+      "boot_wait": "{{user `boot_time`}}",
+      "boot_command": [
+        "admin<enter><wait>",
+        "zerotouch cancel<enter><wait>",
+        "<wait{{user `boot_time`}}>",
+        "admin<enter><wait>",
+        "enable<enter><wait>",
+        "configure<enter><wait>",
+        "aaa authorization exec default local<enter><wait>",
+        "aaa root secret 0 vagrant<enter><wait>",
+        "username admin privilege 15 role network-admin secret 0 admin<enter><wait>",
+        "username vagrant privilege 15 role network-admin secret 0 vagrant<enter><wait>",
+        "username vagrant ssh-key ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrtvp9eWW6A8YVr+kz4TjGYe7gHzIw+niNltGEFHzD8+v1I2YJ6oXevct1YeS0o9HZyN1Q9qgCgzUFtdOKLv6IedplqoPkcmF0aYet2PkEDo3MlTBckFXPITAMzF8dJSIFo9D8HfdOV0IAdx4O7PtixWKn5y2hMNG0zQPyUecp4pzC6kivAIhyfHilFR61RGL+GPXQ2MWZWFYbAGjyiYJnAmCP3NOTd0jMZEnDkbUvxhMmBYSdETk1rRgm+R4LOzFUGaHqHDLKLX+FIPKcF96hrucXzcWyLbIbEgE98OHlnVYCzRdK8jlqm8tehUc9c9WhQ== vagrant insecure public key<enter><wait>",
+        "interface Management 1<enter><wait>",
+        "no lldp transmit<enter><wait>",
+        "no lldp receive<enter><wait>",
+        "ip address dhcp<enter><wait>",
+        "end<enter><wait>",
+        "copy running-config startup-config<enter><wait>",
+        "bash sudo poweroff<enter><wait>",
+        "<exit>"
+      ],
+      "vm_name": "vEOS-{{user `version`}}",
+      "headless": "{{user `gui_disabled`}}",
+      "output_directory": "vEOS-{{user `version`}}",
+      "communicator": "none",
+      "skip_compaction": "true"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "vagrantfile_template": "src/Vagrantfile",
+      "output": "builds/veos-lab-{{user `version`}}-{{.Provider}}.box"
+    }
+  ]
+}

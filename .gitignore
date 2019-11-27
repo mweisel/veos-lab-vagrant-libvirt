@@ -1,0 +1,6 @@
+*.vmdk
+*.vmsd
+*.vmxf
+packer_cache/
+builds/*
+!builds/.gitkeep
