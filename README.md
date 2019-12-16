@@ -36,10 +36,17 @@ qemu-img info $HOME/Downloads/vEOS.qcow2
 sudo cp $HOME/Downloads/vEOS.qcow2 /var/lib/libvirt/images
 ```
 
-5. Modify the file ownership and permissions.
+5. Modify the file ownership and permissions. Note the owner will differ between Linux distributions. A couple of examples:
 
+> Arch Linux
 ```
 sudo chown nobody:kvm /var/lib/libvirt/images/vEOS.qcow2
+sudo chmod u+x /var/lib/libvirt/images/vEOS.qcow2
+```
+
+> Ubuntu 18.04
+```
+sudo chown libvirt-qemu:kvm /var/lib/libvirt/images/vEOS.qcow2
 sudo chmod u+x /var/lib/libvirt/images/vEOS.qcow2
 ```
 
