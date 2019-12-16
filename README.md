@@ -2,10 +2,11 @@ A Packer template for creating an Arista vEOS-lab Vagrant box for the [libvirt](
 
 ## Prerequisites
 
-  * [Arista account](https://www.arista.com/en/user-registration)
+  * [Arista](https://www.arista.com/en/user-registration) account
   * [Git](https://git-scm.com)
   * [Packer](https://packer.io)
-  * [qemu-img](https://www.qemu.org)
+  * [libvirt](https://libvirt.org)
+  * [QEMU](https://www.qemu.org)
   * [Vagrant](https://vagrantup.com)
   * [vagrant-libvirt](https://github.com/vagrant-libvirt/vagrant-libvirt)
 
