@@ -16,5 +16,6 @@ Vagrant.configure("2") do |config|
     domain.memory = 2048
     domain.disk_bus = "ide"
     domain.volume_cache = "unsafe"
+    domain.graphics_type = "none"
   end
 end
