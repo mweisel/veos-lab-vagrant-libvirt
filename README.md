@@ -7,7 +7,7 @@ A Packer template for creating an Arista vEOS-lab Vagrant box for the [libvirt](
   * [Packer](https://packer.io)
   * [libvirt](https://libvirt.org)
   * [QEMU](https://www.qemu.org)
-  * [Vagrant](https://vagrantup.com)
+  * [Vagrant](https://www.vagrantup.com) <= 2.2.9
   * [vagrant-libvirt](https://github.com/vagrant-libvirt/vagrant-libvirt)
 
 ## Steps
