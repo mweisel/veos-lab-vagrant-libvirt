@@ -4,6 +4,8 @@
 Vagrant.configure("2") do |config|
   # Use Vagrant's default insecure key
   config.ssh.insert_key = false
+  # Set shell for SSH commands
+  config.ssh.shell = "bash"
   # Set timeout to 4 mins
   config.vm.boot_timeout = 240
   # Disable default host <-> guest synced folder
