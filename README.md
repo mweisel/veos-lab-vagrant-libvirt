@@ -21,7 +21,7 @@ A Packer template for creating an Arista vEOS-lab Vagrant box for the [libvirt](
 <pre>
 $ <b>which git packer libvirtd qemu-img qemu-system-x86_64 vagrant</b>
 $ <b>vagrant plugin list</b>
-vagrant-libvirt (0.3.0, global)
+vagrant-libvirt (0.4.0, global)
 </pre>
 
 1\. Log in and download the vEOS-lab disk image (vmdk) file from [Arista](https://www.arista.com/support/software-download). Save the file to your `Downloads` directory.
