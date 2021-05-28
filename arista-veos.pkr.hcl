@@ -32,7 +32,7 @@ source "qemu" "veos" {
   disk_image        = true
   use_backing_file  = false
   disk_interface    = "ide"
-  disk_cache        = "unsafe"
+  disk_cache        = "none"
   format            = "qcow2"
   net_device        = "virtio-net"
   iso_checksum      = "none"
