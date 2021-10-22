@@ -11,10 +11,8 @@ A Packer template for creating an Arista vEOS-lab Vagrant box for the [libvirt](
   * [Packer](https://packer.io) >= 1.70
   * [libvirt](https://libvirt.org)
   * [QEMU](https://www.qemu.org)
-  * [Vagrant](https://www.vagrantup.com) >= 2.2.10
+  * [Vagrant](https://www.vagrantup.com) >= 2.2.10, != 2.2.16
   * [vagrant-libvirt](https://github.com/vagrant-libvirt/vagrant-libvirt)
-
-> Vagrant version **2.2.16** introduced a bug that *breaks* SSH connectivity - [#12344](https://github.com/hashicorp/vagrant/issues/12344)
 
 ## Steps
 
@@ -23,7 +21,7 @@ A Packer template for creating an Arista vEOS-lab Vagrant box for the [libvirt](
 <pre>
 $ <b>which git packer libvirtd qemu-img qemu-system-x86_64 vagrant</b>
 $ <b>vagrant plugin list</b>
-vagrant-libvirt (0.5.1, global)
+vagrant-libvirt (0.6.3, global)
 </pre>
 
 1\. Log in and download the vEOS-lab disk image (vmdk) file from [Arista](https://www.arista.com/support/software-download). Save the file to your `Downloads` directory.
@@ -31,7 +29,7 @@ vagrant-libvirt (0.5.1, global)
 2\. Convert the vEOS-lab disk image file from `vmdk` to `qcow2`.
 
 <pre>
-$ <b>qemu-img convert -pO qcow2 $HOME/Downloads/vEOS-lab-4.26.0.1F.vmdk $HOME/Downloads/vEOS.qcow2</b>
+$ <b>qemu-img convert -pO qcow2 $HOME/Downloads/vEOS-lab-4.27.0F.vmdk $HOME/Downloads/vEOS.qcow2</b>
 $ <b>qemu-img check $HOME/Downloads/vEOS.qcow2</b>
 </pre>
 
@@ -73,13 +71,13 @@ $ <b>cd veos-lab-vagrant-libvirt</b>
 7\. Packer _build_ to create the Vagrant box artifact. Supply the EOS version number for the `version` variable value.
 
 <pre>
-$ <b>packer build -var 'version=4.26.0.1F' arista-veos.pkr.hcl</b>
+$ <b>packer build -var 'version=4.27.0F' arista-veos.pkr.hcl</b>
 </pre>
 
 8\. Copy the Vagrant box artifact to the `boxes` directory.
 
 <pre>
-$ <b>cp ./builds/arista-veos-4.26.0.1F.box $HOME/boxes/</b>
+$ <b>cp ./builds/arista-veos-4.27.0F.box $HOME/boxes/</b>
 </pre>
 
 9\. Copy the box metadata file to the `boxes` directory.
@@ -113,17 +111,17 @@ $ <b>awk '/VER/{gsub(/^ */,"");print}' arista-veos.json</b>
 "version": "<b>VER</b>",
 "url": "file:///home/marc/boxes/arista-veos-<b>VER</b>.box"
 
-$ <b>sed -i 's/VER/4.26.0.1F/g' arista-veos.json</b>
+$ <b>sed -i 's/VER/4.27.0F/g' arista-veos.json</b>
 
 $ <b>awk '/\&lt;version\&gt;|url/{gsub(/^ */,"");print}' arista-veos.json</b>
-"version": "<b>4.26.0.1F</b>",
-"url": "file:///home/marc/boxes/arista-veos-<b>4.26.0.1F</b>.box"
+"version": "<b>4.27.0F</b>",
+"url": "file:///home/marc/boxes/arista-veos-<b>4.27.0F</b>.box"
 </pre>
 
 13\. Add the Vagrant box to the local inventory.
 
 <pre>
-$ <b>vagrant box add arista-veos.json</b>
+$ <b>vagrant box add --box-version 4.27.0F arista-veos.json</b>
 </pre>
 
 ## License
