@@ -18,9 +18,8 @@ Vagrant.configure("2") do |config|
   config.vm.guest = :freebsd
 
   config.vm.provider :libvirt do |domain|
-    domain.cpus = 1
-    domain.memory = 2048
-    domain.disk_bus = 'ide'
+    domain.cpus = 2
+    domain.memory = 4096
     domain.disk_driver :cache => 'none'
     domain.graphics_type = 'none'
   end
